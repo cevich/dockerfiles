@@ -28,7 +28,7 @@ esac
 
 $UPDATE_CMD
 
-if [ -n "$PREINS_CMD" ]
+if [ -n "$PREINST_CMD" ]
 then
     $PREINST_CMD
 fi
