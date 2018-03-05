@@ -14,4 +14,5 @@ env:
         - CI_SCRIPT="/bin/true"  # Path + args for your CI script goes here
 before_install:
   - sudo apt-get -qq update  # on the host
+  - sudo apt-get -qq install realpath  # WTF this isn't part of the core?
 script: "./travis.sh $CI_SCRIPT"

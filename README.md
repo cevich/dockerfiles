@@ -18,3 +18,5 @@ files in this repo.
 * [docker.io/cevich/travis_ubuntu:latest](https://hub.docker.com/r/cevich/travis_ubuntu/)
 * [docker.io/cevich/travis_fedora:latest](https://hub.docker.com/r/cevich/travis_fedora/)
 * [docker.io/cevich/travis_centos:latest](https://hub.docker.com/r/cevich/travis_centos/)
+
+[![Build Status](https://travis-ci.org/cevich/dockerfiles.svg?branch=master)](https://travis-ci.org/cevich/dockerfiles)
