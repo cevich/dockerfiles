@@ -10,10 +10,8 @@ capable of building/installing Ansible under either python2 or 3 pip.
 
 ## Travis SPC Images
 Built upon the above, with additional packages needed for performing common build/test
-tasks.  Intended to be used as SPCs under Travis CI.  For example, see
-[the .travis.yml](https://github.com/cevich/dockerfiles/blob/master/.travis.yml)
-and [the travis.sh](https://github.com/cevich/dockerfiles/blob/master/travis.sh)
-files in this repo.
+tasks.  Intended to be used as SPCs under Travis CI.  For example, see [the .travis.yml](https://github.com/cevich/dockerfiles/blob/master/.travis.yml)
+and [the travis.sh](https://github.com/cevich/dockerfiles/blob/master/travis.sh) files in this repo.
 
 * [docker.io/cevich/travis_ubuntu:latest](https://hub.docker.com/r/cevich/travis_ubuntu/)
 * [docker.io/cevich/travis_fedora:latest](https://hub.docker.com/r/cevich/travis_fedora/)
