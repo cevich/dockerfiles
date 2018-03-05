@@ -1,4 +1,4 @@
-FROM docker.io/centos:latest
+FROM cevich/venv_centos:latest
 MAINTAINER cevich@redhat.com
 ENV container="docker" \
     img_name="travis_centos"

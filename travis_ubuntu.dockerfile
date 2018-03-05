@@ -1,4 +1,4 @@
-FROM docker.io/ubuntu:latest
+FROM cevich/travis_ubuntu:latest
 MAINTAINER cevich@redhat.com
 ENV container="docker" \
     img_name="travis_ubuntu"

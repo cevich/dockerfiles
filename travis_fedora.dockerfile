@@ -1,4 +1,4 @@
-FROM docker.io/fedora:latest
+FROM cevich/travis_fedora:latest
 MAINTAINER cevich@redhat.com
 ENV container="docker" \
     img_name="travis_fedora"
