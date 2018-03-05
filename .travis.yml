@@ -1,0 +1,17 @@
+---
+language: python  # host language doesn't matter / not-used here
+python:
+    - 3.6
+sudo: required
+services:
+  - docker
+env:
+    matrix:
+        - DISTRO="ubuntu"
+        - DISTRO="fedora"
+        - DISTRO="centos"
+    global:
+        - CI_SCRIPT="/bin/true"  # Path + args for your CI script goes here
+before_install:
+  - sudo apt-get -qq update  # on the host
+script: "./travis.sh $CI_SCRIPT"

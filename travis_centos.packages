@@ -1,0 +1,13 @@
+'@Development Tools'
+atomic
+audit
+docker
+glib-networking
+iptables
+json-glib
+ltrace
+oprofile
+skopeo-containers
+strace
+valgrind
+vim
