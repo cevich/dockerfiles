@@ -11,3 +11,4 @@ skopeo-containers
 strace
 valgrind
 vim
+bzip2

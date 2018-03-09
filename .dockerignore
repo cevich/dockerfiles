@@ -1,4 +1,6 @@
+.git
 dockerignore
 .dockerignore
 LICENSE
 README.md
+travis.sh

@@ -5,3 +5,4 @@ make
 pkg-config
 scons
 vim
+bzip2
