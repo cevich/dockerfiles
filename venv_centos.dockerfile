@@ -1,4 +1,4 @@
-FROM docker.io/centos:latest
+FROM centos:latest
 MAINTAINER cevich@redhat.com
 ENV container="docker" \
     img_name="venv_centos"

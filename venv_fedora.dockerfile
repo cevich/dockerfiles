@@ -1,4 +1,4 @@
-FROM docker.io/fedora:latest
+FROM fedora:latest
 MAINTAINER cevich@redhat.com
 ENV container="docker" \
     img_name="venv_fedora"

@@ -1,4 +1,4 @@
-FROM docker.io/ubuntu:latest
+FROM ubuntu:latest
 MAINTAINER cevich@redhat.com
 ENV container="docker" \
     img_name="venv_ubuntu"
