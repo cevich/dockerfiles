@@ -1,6 +1,7 @@
-FROM cevich/venv_centos:latest
+FROM centos:latest
 MAINTAINER cevich@redhat.com
 ENV container="docker" \
     img_name="travis_centos"
-ADD ["/${img_name}.dockerfile", "/${img_name}.packages", "install.sh", "/root/"]
-RUN /root/install.sh
+ADD ["/${img_name}.dockerfile", "/${img_name}.packages", "/root/"]
+ADD ["install.sh", "/root/bin/"]
+RUN /root/bin/install.sh

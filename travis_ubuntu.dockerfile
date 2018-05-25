@@ -1,6 +1,7 @@
-FROM cevich/venv_ubuntu:latest
+FROM ubuntu:latest
 MAINTAINER cevich@redhat.com
 ENV container="docker" \
     img_name="travis_ubuntu"
-ADD ["/${img_name}.dockerfile", "/${img_name}.packages", "install.sh", "/root/"]
-RUN /root/install.sh
+ADD ["/${img_name}.dockerfile", "/${img_name}.packages", "/root/"]
+ADD ["install.sh", "/root/bin/"]
+RUN /root/bin/install.sh

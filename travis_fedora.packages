@@ -2,3 +2,11 @@
 '@Container Management'
 '@Development Tools'
 bzip2
+curl
+dnf-plugins-core
+findutils
+gcc
+git
+redhat-rpm-config
+rsync
+wget

@@ -1,14 +1,21 @@
 '@Development Tools'
 atomic
 audit
+bzip2
+curl
 docker
+findutils
+gcc
+git
 glib-networking
 iptables
 json-glib
 ltrace
 oprofile
+redhat-rpm-config
+rsync
 skopeo-containers
 strace
 valgrind
 vim
-bzip2
+wget

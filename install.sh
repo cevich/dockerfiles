@@ -2,21 +2,29 @@
 
 set -xeo pipefail
 
+MARKER="# Added by $0"
+VENVURI="${VENVURI:-https://raw.githubusercontent.com/cevich/ADEPT/master/venv-cmd.sh}"
+VENVREQ="${VENVREQ:-https://raw.githubusercontent.com/cevich/ADEPT/master/requirements.txt}"
+
 case "$img_name" in
     *fedora*)
         UPDATE_CMD='dnf update -y'
         PREINST_CMD='dnf install -y findutils'
         INSTALL_CMD='dnf install -y'
+        CLEAN_CMD='dnf clean all'
         ;;
     *centos*)
-        UPDATE_CMD='yum update -y'
+        # workaround setup packaging bug, remove when fixed.
+        UPDATE_CMD='yum update -y --exclude=setup'
         PREINST_CMD='yum install -y epel-release findutils'
         INSTALL_CMD='yum install -y'
+        CLEAN_CMD='yum clean all'
         ;;
     *ubuntu*)
         UPDATE_CMD='apt-get -qq update'
         PREINST_CMD=''
         INSTALL_CMD='apt-get -qq install'
+        CLEAN_CMD='apt-get -qq clean'
         ;;
     *)
         echo "This script is intended to be called as part of the docker build process,"
@@ -26,13 +34,32 @@ case "$img_name" in
         ;;
 esac
 
-$UPDATE_CMD
-
-if [ -n "$PREINST_CMD" ]
+if ! grep "$MARKER" /root/.bashrc
 then
-    $PREINST_CMD
+    (
+        echo "$MARKER"
+        echo 'PATH=${PATH}:/root/bin'
+    ) >> /root/.bashrc
 fi
+
+for CMD in "$UPDATE_CMD" "$PREINST_CMD"
+do
+    if [[ -n "$CMD" ]]; then $CMD; fi
+done
 
 cat /root/${img_name}.packages | xargs $INSTALL_CMD
 
-rm -f /root/${img_name}.packages /root/install.sh
+if [[ -n "$CLEAN_CMD" ]]; then $CLEAN_CMD; fi
+
+if [[ -n "$seed_workspace" ]]
+then  # this is a venv_* image
+    mkdir -p "$seed_workspace"
+    cd "$seed_workspace"
+    for URL in "$VENVURI" "$VENVREQ"
+    do
+        curl --remote-name "$URL"
+    done
+    chmod 755 ./venv-cmd.sh
+    # Seed .cache and .venv contents
+    env WORKSPACE="$seed_workspace" ./venv-cmd.sh ansible-playbook --version
+fi
