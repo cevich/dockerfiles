@@ -2,14 +2,8 @@
 
 set -e
 
-export DISTRO="${DISTRO:-ubuntu}"
-export FQIN="docker.io/cevich/travis_${DISTRO}:latest"
-
-echo
-echo "Pulling $FQIN"
-docker pull $FQIN &
-
 cd "$(realpath $(dirname $0))"
+source ./lib.sh
 export REPO_NAME=$(basename $(git rev-parse --show-toplevel))
 export WORKDIRNAME="${TRAVIS_REPO_SLUG:-$REPO_NAME}"
 export TRAVIS_BUILD_DIR="${TRAVIS_BUILD_DIR:-/root/$WORKDIRNAME}"
@@ -23,7 +17,7 @@ TMP_SPC_REPO_COPY=$(mktemp -p '' -d ${REPO_NAME}_XXXXXX)
 trap "sudo rm -rf $TMP_SPC_REPO_COPY" EXIT
 /usr/bin/rsync --recursive --links --delete-after --quiet \
                --delay-updates --whole-file --safe-links \
-               --perms --times --checksum "${PWD}/" "${TMP_SPC_REPO_COPY}/" &
+               --perms --times --checksum "${PWD}/" "${TMP_SPC_REPO_COPY}/"
 
 export SPC_ARGS="--interactive --rm --privileged --ipc=host --pid=host --net=host"
 
@@ -47,13 +41,11 @@ export VOL_ARGS="-v $TMP_SPC_REPO_COPY:$TRAVIS_BUILD_DIR
                  -v /var/run/docker.sock:/var/run/docker.sock
                  --workdir $TRAVIS_BUILD_DIR"
 
-wait  # for backgrounded processes
-
 echo
 echo "Host Environment:"
-env
+env | sort
 
-CMD="docker run $SPC_ARGS $ENV_ARGS $VOL_ARGS $FQIN $@"
+CMD="docker run $SPC_ARGS $ENV_ARGS $VOL_ARGS ${FQIN}:${TAG} $SPC_CMD"
 echo
-echo "Executing $CMD"
+echo "Executing: $CMD"
 $CMD

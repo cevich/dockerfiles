@@ -1,31 +1,58 @@
 ---
 
-language: python  # host language doesn't matter / not-used here
-python:
-    - 3.6
+language: generic
 
 sudo: required
 
 services:
   - docker
 
-env:
-    matrix:
-        - DISTRO="ubuntu"
-        - DISTRO="fedora"
-        - DISTRO="centos"
+# Don't build my own PR branches
+branches:
+  only:
+    - master
 
+env:
     global:
-        - CI_SCRIPT="/bin/true"  # Path + args for your CI script goes here
+        - VENV_SPC_CMD="ansible-doc --list
+        - TRAVIS_SPC_CMD="make --version"
+    matrix:
+        # Ubuntu
+        - FQIN_SFX="ubuntu"
+          FQIN_PFX="venv"
+          SPC_CMD="$VENV_SPC_CMD"
+          TOKEN="$VENV_UBUNTU_TOKEN"
+        - FQIN_SFX="ubuntu"
+          FQIN_PFX="travis"
+          SPC_CMD="$TRAVIS_SPC_CMD"
+          TOKEN="$TRAVIS_UBUNTU_TOKEN"
+        # Fedora
+        - FQIN_SFX="fedora"
+          FQIN_PFX="venv"
+          SPC_CMD="$VENV_SPC_CMD"
+          TOKEN="$VENV_FEDORA_TOKEN"
+        - FQIN_SFX="fedora"
+          FQIN_PFX="travis"
+          SPC_CMD="$TRAVIS_SPC_CMD"
+          TOKEN="$TRAVIS_FEDORA_TOKEN"
+        # CentOS
+        - FQIN_SFX="centos"
+          FQIN_PFX="venv"
+          SPC_CMD="$VENV_SPC_CMD"
+          TOKEN="$VENV_CENTOS_TOKEN"
+        - FQIN_SFX="centos"
+          FQIN_PFX="travis"
+          SPC_CMD="$TRAVIS_SPC_CMD"
+          TOKEN="$TRAVIS_CENTOS_TOKEN"
 
 before_install:
   - sudo apt-get -qq update  # on the host
-  - sudo apt-get -qq install realpath  # WTF this isn't part of the core?
-  # Note: In this context (this this repository), there's a catch-22:
-  # We can't rely on docker's auto-builds for testing purposes, because
-  # they occur only _after_ a merge.  If re-using this .travis.yml for any
-  # other repo, you can leave out the following two docker build commands.
-  - sudo docker build -f venv_${DISTRO}.dockerfile -t cevich/venv_${DISTRO}:latest ./
-  - sudo docker build -f travis_${DISTRO}.dockerfile -t cevich/travis_${DISTRO}:latest ./
 
-script: "./travis.sh $CI_SCRIPT"
+install:
+  - "./build.sh"
+
+script:
+  - "./test.sh"
+
+after_success:
+  - "./deploy.sh"
