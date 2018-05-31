@@ -3,4 +3,7 @@ dockerignore
 .dockerignore
 LICENSE
 README.md
-travis.sh
+lib.sh
+build.sh
+test.sh
+deploy.sh
