@@ -10,5 +10,5 @@ then
         cp -au "${seed_workspace}"/* "${seed_workspace}"/.??* "$WORKSPACE"/
     fi
     cd $WORKSPACE
-    ./venv-cmd.sh "$@"
+    exec ./venv-cmd.sh "$@"
 fi
