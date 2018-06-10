@@ -44,9 +44,14 @@ env:
           FQIN_PFX="travis"
           SPC_CMD="$TRAVIS_SPC_CMD"
           TOKEN="$TRAVIS_CENTOS_TOKEN"
+        - FQIN_SFX="rhsm"
+          FQIN_PFX="test"
+          SPC_CMD="subscription-manager clean"
+          TOKEN="$TEST_RHSM_TOKEN"
 
 before_install:
   - sudo apt-get -qq update  # on the host
+  - sudo apt-get -qq install realpath
 
 install:
   - "./build.sh"

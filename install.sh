@@ -14,9 +14,14 @@ case "$img_name" in
         CLEAN_CMD='dnf clean all'
         ;;
     *centos*)
-        # workaround setup packaging bug, remove when fixed.
-        UPDATE_CMD='yum update -y --exclude=setup'
+        UPDATE_CMD='yum update -y'
         PREINST_CMD='yum install -y epel-release findutils'
+        INSTALL_CMD='yum install -y'
+        CLEAN_CMD='yum clean all'
+        ;;
+    *test_rhsm*)
+        UPDATE_CMD='yum update -y'
+        PREINST_CMD='yum install -y epel-release'
         INSTALL_CMD='yum install -y'
         CLEAN_CMD='yum clean all'
         ;;
