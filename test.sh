@@ -49,3 +49,11 @@ CMD="docker run $SPC_ARGS $ENV_ARGS $VOL_ARGS ${FQIN}:${TAG} $SPC_CMD"
 echo
 echo "Executing: $CMD"
 $CMD
+
+if [[ "$FQIN_PFX" == "venv" ]] && [[ "$FQIN_SFX" == "centos" ]]
+then
+    echo
+    echo "Testing dependant spc_centos image"
+    docker run $SPC_ARGS $ENV_ARGS $VOL_ARGS spc_centos:latest podman --storage-driver vfs pull alpine
+    docker run $SPC_ARGS $ENV_ARGS $VOL_ARGS spc_centos:latest ansible -i localhost, localhost -c local -m docker_container -a 'name=foobar detach=false image=centos state=present command=true cleanup=true interactive=true'
+fi

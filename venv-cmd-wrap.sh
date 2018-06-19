@@ -2,6 +2,12 @@
 
 set -e
 
+if [[ ! -d "$seed_workspace" ]]
+then
+    echo "ERROR: Container Image does not have a valid \$seed_workspace value."
+    exit 1
+fi
+
 if [[ -n "$WORKSPACE" ]]
 then
     if [[ "$WORKSPACE" != "$seed_workspace" ]]
