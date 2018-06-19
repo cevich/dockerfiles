@@ -14,7 +14,7 @@ branches:
 
 env:
     global:
-        - VENV_SPC_CMD="ansible-doc --list
+        - VENV_SPC_CMD="ansible-doc --list"
         - TRAVIS_SPC_CMD="make --version"
     matrix:
         # Ubuntu

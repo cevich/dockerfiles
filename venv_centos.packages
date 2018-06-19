@@ -13,6 +13,10 @@ python-simplejson
 python-virtualenv
 python34
 python34-devel
+python34-pycurl
+python34-requests
+python34-simplejson
+python34-virtualenv
 redhat-rpm-config
 rsync
 wget

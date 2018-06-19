@@ -15,6 +15,9 @@ python2-simplejson
 python2-virtualenv
 python3-devel
 python3-pycurl
+python3-requests
+python3-simplejson
+python3-virtualenv
 redhat-rpm-config
 rsync
 wget
