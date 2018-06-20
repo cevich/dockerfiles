@@ -58,6 +58,7 @@ if [[ -n "$CLEAN_CMD" ]]; then $CLEAN_CMD; fi
 
 if [[ -n "$seed_workspace" ]] && [[ ! -d "$seed_workspace" ]]
 then  # this is a venv_* image
+    echo "Configuring python virtual environment for Ansible"
     mkdir -p "$seed_workspace"
     cd "$seed_workspace"
     for URL in "$VENVURI" "$VENVREQ"
@@ -65,6 +66,13 @@ then  # this is a venv_* image
         curl --remote-name "$URL"
     done
     chmod 755 ./venv-cmd.sh
-    # Seed .cache and .venv contents
+
+    if [[ -n "$xtrareq" ]] && [[ -r "$xtrareq" ]]
+    then  # Additional requirements are needed
+        echo "Adding docker support to python virtual environment"
+        cat "$XTRAREQ" >> ./requirements.txt
+    fi
+
+    echo "Seeding python virtual environment and cache contents"
     env WORKSPACE="$seed_workspace" ./venv-cmd.sh ansible-playbook --version
 fi
