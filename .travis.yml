@@ -14,7 +14,7 @@ branches:
 
 env:
     global:
-        - VENV_SPC_CMD="ansible-doc --list
+        - VENV_SPC_CMD="ansible-doc --list"
         - TRAVIS_SPC_CMD="make --version"
     matrix:
         # Ubuntu
@@ -44,6 +44,7 @@ env:
           FQIN_PFX="travis"
           SPC_CMD="$TRAVIS_SPC_CMD"
           TOKEN="$TRAVIS_CENTOS_TOKEN"
+        # Special purpose
         - FQIN_SFX="rhsm"
           FQIN_PFX="test"
           SPC_CMD="subscription-manager clean"

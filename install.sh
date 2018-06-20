@@ -56,7 +56,7 @@ cat /root/${img_name}.packages | xargs $INSTALL_CMD
 
 if [[ -n "$CLEAN_CMD" ]]; then $CLEAN_CMD; fi
 
-if [[ -n "$seed_workspace" ]]
+if [[ -n "$seed_workspace" ]] && [[ ! -d "$seed_workspace" ]]
 then  # this is a venv_* image
     mkdir -p "$seed_workspace"
     cd "$seed_workspace"
