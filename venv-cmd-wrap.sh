@@ -2,7 +2,7 @@
 
 set -e
 
-if [[ ! -d "$seed_workspace" ]]
+if [[ -z "$seed_workspace" ]] || [[ ! -d "$seed_workspace" ]]
 then
     echo "ERROR: Container Image does not have a valid \$seed_workspace value."
     exit 1
@@ -18,3 +18,6 @@ then
     cd $WORKSPACE
     exec ./venv-cmd.sh "$@"
 fi
+
+echo "ERROR: Improper usage of $(basename $0)"
+exit 2
