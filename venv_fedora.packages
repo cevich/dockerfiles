@@ -20,4 +20,5 @@ python3-simplejson
 python3-virtualenv
 redhat-rpm-config
 rsync
+sshpass
 wget
