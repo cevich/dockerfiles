@@ -7,6 +7,8 @@ dnf-plugins-core
 findutils
 gcc
 git
+python2
+python3
 redhat-rpm-config
 rsync
 wget
