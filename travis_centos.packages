@@ -12,6 +12,8 @@ iptables
 json-glib
 ltrace
 oprofile
+python2
+python34
 redhat-rpm-config
 rsync
 skopeo-containers

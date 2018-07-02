@@ -9,6 +9,7 @@ git
 make
 openssl
 pkg-config
+python3
 rsync
 scons
 vim
