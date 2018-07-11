@@ -21,3 +21,4 @@ redhat-rpm-config
 rsync
 sshpass
 wget
+which
