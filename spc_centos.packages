@@ -2,3 +2,4 @@ docker
 python-docker-py
 podman
 atomic
+nmap-ncat
