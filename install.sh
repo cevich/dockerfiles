@@ -13,15 +13,10 @@ case "$img_name" in
         INSTALL_CMD='dnf install -y'
         CLEAN_CMD='dnf clean all'
         ;;
+    *test_rhsm*) ;&  # continue to next item
     *centos*)
         UPDATE_CMD='yum update -y'
         PREINST_CMD='yum install -y epel-release findutils'
-        INSTALL_CMD='yum install -y'
-        CLEAN_CMD='yum clean all'
-        ;;
-    *test_rhsm*)
-        UPDATE_CMD='yum update -y'
-        PREINST_CMD='yum install -y epel-release'
         INSTALL_CMD='yum install -y'
         CLEAN_CMD='yum clean all'
         ;;
@@ -38,6 +33,21 @@ case "$img_name" in
         exit 1
         ;;
 esac
+
+if [[ "$img_name" =~ "gcloud_centos" ]]
+then
+    # Update YUM with Cloud SDK repo information:
+    cat << EOF > /etc/yum.repos.d/google-cloud-sdk.repo
+[google-cloud-sdk]
+name=Google Cloud SDK
+baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+       https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+fi
 
 if ! grep "$MARKER" /root/.bashrc
 then
