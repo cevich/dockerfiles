@@ -8,6 +8,15 @@ export REPO_NAME=$(basename $(git rev-parse --show-toplevel))
 export WORKDIRNAME="${TRAVIS_REPO_SLUG:-$REPO_NAME}"
 export TRAVIS_BUILD_DIR="${TRAVIS_BUILD_DIR:-/root/$WORKDIRNAME}"
 
+# Tested differently from all the rest
+if [[ "$FQIN" == "gcloud_centos" ]]
+then
+    echo
+    echo "Testing gcloud_centos image"
+    ./test_gcloud.sh
+    exit $?
+fi
+
 # Volume-mounting the repo into the SPC makes a giant mess of permissions
 # on the host.  This really sucks for developers, so make a copy for use
 # in the SPC separate from the host, throw it away when this script exits.
@@ -50,7 +59,7 @@ echo
 echo "Executing: $CMD"
 $CMD
 
-if [[ "$FQIN_PFX" == "venv" ]] && [[ "$FQIN_SFX" == "centos" ]]
+if [[ "$FQIN" == "venv_centos" ]]
 then
     echo
     echo "Testing dependant spc_centos image"

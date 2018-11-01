@@ -44,6 +44,10 @@ env:
           FQIN_PFX="travis"
           SPC_CMD="$TRAVIS_SPC_CMD"
           TOKEN="$TRAVIS_CENTOS_TOKEN"
+        # Gcloud
+        - FQIN_SFX="centos"
+          FQIN_PFX="gcloud"
+          TOKEN="$TRAVIS_GCLOUD_TOKEN"
         # Special purpose
         - FQIN_SFX="rhsm"
           FQIN_PFX="test"

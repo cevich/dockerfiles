@@ -28,4 +28,11 @@ host's subscription.  Specificly it's used by the CI for my
 Extends the Ansible Venv CentOS Image such that it may utilize docker or podman
 on the host system, from within Ansible playbooks in the container.
 
+## GCloud Image
+Simply an ephemeral container image for executing GCE's gcloud CLI as a regular user,
+with configuration stored in normal home directory.  Intended to be used by
+adding to `.bashrc`:
+
+    `alias gcloud='sudo docker run -it --rm -e AS_ID=$UID -e AS_USER=$USER cevich/gcloud_centos'`
+
 [![Build Status](https://travis-ci.org/cevich/dockerfiles.svg?branch=master)](https://travis-ci.org/cevich/dockerfiles)
