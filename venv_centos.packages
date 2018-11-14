@@ -5,6 +5,7 @@ gcc
 git
 libffi-devel
 libselinux-python
+nmap-ncat
 openssl-devel
 python-devel
 python-pycurl
