@@ -38,4 +38,4 @@ test_expectations 6 "$CMD" 4 '/home/\$USER:\$HOME'
 
 # expect gcloud to exit 2 and produce usage message output
 CMD="$CMD -v /home/$USER:$HOME:z"
-test_expectations 9 "$CMD" 2 'Usage: gcloud'
+test_expectations 9 "$CMD" 2 'Command name argument expected'

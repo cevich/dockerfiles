@@ -8,6 +8,7 @@ libselinux1
 libssl-dev
 libxml2-dev
 libxslt-dev
+netcat
 openssl
 python-dev
 python-pycurl
