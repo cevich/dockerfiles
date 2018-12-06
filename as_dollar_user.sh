@@ -17,4 +17,6 @@ if ! [[ -r "/home/$AS_USER/.config/gcloud/configurations/config_default" ]]
 then  # gcloud has not been initialized, do that first
     echo "Warning: no gcloud configuration found, you may want to run the 'init' subcommand to set it up."
 fi
-sudo --preserve-env --set-home --user "$AS_USER" --login --stdin /usr/bin/gcloud "$@"
+
+set -x
+exec sudo --set-home --user "$AS_USER" --login --stdin /usr/bin/gcloud "$@"
