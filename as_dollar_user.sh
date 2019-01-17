@@ -18,5 +18,5 @@ then  # gcloud has not been initialized, do that first
     echo "Warning: no gcloud configuration found, you may want to run the 'init' subcommand to set it up."
 fi
 
-set -x
+# set -x
 exec sudo --set-home --user "$AS_USER" --login --stdin /usr/bin/gcloud "$@"
