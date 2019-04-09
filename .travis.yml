@@ -21,38 +21,33 @@ env:
         - FQIN_SFX="ubuntu"
           FQIN_PFX="venv"
           SPC_CMD="$VENV_SPC_CMD"
-          TOKEN="$VENV_UBUNTU_TOKEN"
         - FQIN_SFX="ubuntu"
           FQIN_PFX="travis"
           SPC_CMD="$TRAVIS_SPC_CMD"
-          TOKEN="$TRAVIS_UBUNTU_TOKEN"
         # Fedora
         - FQIN_SFX="fedora"
           FQIN_PFX="venv"
           SPC_CMD="$VENV_SPC_CMD"
-          TOKEN="$VENV_FEDORA_TOKEN"
         - FQIN_SFX="fedora"
           FQIN_PFX="travis"
           SPC_CMD="$TRAVIS_SPC_CMD"
-          TOKEN="$TRAVIS_FEDORA_TOKEN"
         # CentOS
         - FQIN_SFX="centos"
           FQIN_PFX="venv"
           SPC_CMD="$VENV_SPC_CMD"
-          TOKEN="$VENV_CENTOS_TOKEN"
         - FQIN_SFX="centos"
           FQIN_PFX="travis"
           SPC_CMD="$TRAVIS_SPC_CMD"
-          TOKEN="$TRAVIS_CENTOS_TOKEN"
         # Gcloud
         - FQIN_SFX="centos"
           FQIN_PFX="gcloud"
-          TOKEN="$TRAVIS_GCLOUD_TOKEN"
+        # Gsutil
+        - FQIN_SFX="centos"
+          FQIN_PFX="gsutil"
         # Special purpose
         - FQIN_SFX="rhsm"
           FQIN_PFX="test"
           SPC_CMD="subscription-manager clean"
-          TOKEN="$TEST_RHSM_TOKEN"
 
 before_install:
   - sudo apt-get -qq update  # on the host
