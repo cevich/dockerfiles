@@ -9,7 +9,7 @@ export WORKDIRNAME="${TRAVIS_REPO_SLUG:-$REPO_NAME}"
 export TRAVIS_BUILD_DIR="${TRAVIS_BUILD_DIR:-/root/$WORKDIRNAME}"
 
 # Tested differently from all the rest
-if [[ "$FQIN" == "gcloud_centos" ]]
+if [[ "$FQIN" == "gcloud_centos" ]] || [[ "$FQIN" == "gsutil_centos" ]]
 then
     echo
     echo "Testing gcloud_centos image"
