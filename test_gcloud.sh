@@ -34,8 +34,19 @@ test_expectations 3 "$CMD" 3 'AS_USER=\$USER'
 
 # Expect an error message about /home/$USER:$HOME"  and a "4" exit code
 CMD="$CMD -e AS_USER=$USER"
-test_expectations 6 "$CMD" 4 '/home/\$USER:\$HOME'
+test_expectations 5 "$CMD" 4 '/home/\$USER:\$HOME'
 
-# expect gcloud to exit 2 and produce usage message output
-CMD="$CMD -v /home/$USER:$HOME:z"
-test_expectations 9 "$CMD" 2 'Command name argument expected'
+if [[ "$FQIN" == "gcloud_centos" ]]
+then
+    # expect gcloud to exit 2 and produce usage message output
+    CMD="$CMD -v /home/$USER:$HOME:z"
+    test_expectations 7 "$CMD" 2 'Command name argument expected'
+elif [[ "$FQIN" == "gsutil_centos" ]]
+then
+    # expect gsutil to exit  and produce usage message output
+    CMD="$CMD -v /home/$USER:$HOME:z"
+    test_expectations 11 "$CMD" 0 'Concatenate object content to stdout'
+else
+    echo "Unsupported \$FQIN=$FQIN"
+    exit 17
+fi
