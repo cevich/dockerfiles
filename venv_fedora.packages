@@ -1,7 +1,5 @@
 PyYAML
-curl
 dnf-plugins-core
-findutils
 gcc
 git
 libffi-devel
@@ -11,7 +9,6 @@ openssl-devel
 python-devel
 python-pycurl
 python-simplejson
-python2-dnf
 python2-simplejson
 python2-virtualenv
 python3-devel
@@ -23,4 +20,3 @@ redhat-rpm-config
 rsync
 sshpass
 wget
-which
