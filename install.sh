@@ -3,8 +3,8 @@
 set -xeo pipefail
 
 MARKER="# Added by $0"
-VENVURI="${VENVURI:-https://raw.githubusercontent.com/cevich/ADEPT/master/venv-cmd.sh}"
-VENVREQ="${VENVREQ:-https://raw.githubusercontent.com/cevich/ADEPT/master/requirements.txt}"
+VENVURI="${VENVURI:-https://raw.githubusercontent.com/cevich/ADEPT/71df357ff7bf117bbef5a24b5905158989b83688/venv-cmd.sh}"
+VENVREQ="${VENVREQ:-https://github.com/cevich/ADEPT/blob/71df357ff7bf117bbef5a24b5905158989b83688/requirements.txt}"
 
 case "$img_name" in
     *fedora*)
